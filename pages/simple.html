@@ -5,6 +5,16 @@
 <body>
   <div>Test page with scrollbars and text box</div>
   <div><input type="text"/></div>
+  <div id="logdiv"> e: </div>
   <div style="min-height: 400px; background-color: gray">Test div</div>
+  <script>
+    var log = function(msg) {
+      var logDiv = document.getElementById('logdiv');
+      logDiv.innerText += ' ' + msg;
+    };
+    document.addEventListener('mouseup', function(e) { log('mu'); });
+    document.addEventListener('mousedown', function(e) { log('md'); });
+    document.addEventListener('click', function(e) { log('c'); });
+  </script>
 </body>
 </html>

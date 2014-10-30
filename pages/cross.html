@@ -8,6 +8,7 @@
   </div>
   <div>
     <iframe id="cross-iframe" style="width: 90%; min-height: 400px;"></iframe>
+    <div id="logdiv"> e: </div>
   </div>
   <script>
     window.fURL = 'https://lazyboy.github.io/pages/simple.html';
@@ -17,6 +18,13 @@
     document.getElementById('sub-button').onclick = function(e) {
       i.src = document.getElementById('address-text').value;
     };
+    var log = function(msg) {
+      var logDiv = document.getElementById('logdiv');
+      logDiv.innerText += ' ' + msg;
+    };
+    document.addEventListener('mouseup', function(e) { log('mu'); });
+    document.addEventListener('mousedown', function(e) { log('md'); });
+    document.addEventListener('click', function(e) { log('c'); });
   </script>
 </body>
 </html>
