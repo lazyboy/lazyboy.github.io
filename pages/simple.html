@@ -5,6 +5,7 @@
 <body>
   <div>Test page with scrollbars and text box</div>
   <div><input type="text"/></div>
+  <div id="current-tick"></div>
   <div id="logdiv"> e: </div>
   <div style="min-height: 400px; background-color: gray">Test div</div>
   <script>
@@ -15,6 +16,13 @@
     document.addEventListener('mouseup', function(e) { log('mu'); });
     document.addEventListener('mousedown', function(e) { log('md'); });
     document.addEventListener('click', function(e) { log('c'); });
+    log('parent: ' + window.parent);
+    log('top: ' + window.top);
+    var cur = 0;
+    window.setInterval(function() {
+      ++cur;
+      document.getElementById('current-tick').innerText = cur;
+    }, 1000);
   </script>
 </body>
 </html>

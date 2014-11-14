@@ -3,5 +3,13 @@
 </head>
 <body>
   <div>Landing page</div>
+  <div id="current-tick"></div>
+  <script>
+    var cur = 0;
+    window.setInterval(function() {
+      ++cur;
+      document.getElementById('current-tick').innerText = cur;
+    }, 1000);
+  </script>
 </body>
 </html>
