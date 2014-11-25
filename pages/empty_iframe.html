@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+  <div>
+    This page contains an empty iframe (no src).
+  </div>
+  <div>
+    <iframe id="empty-iframe" style="width: 90%; min-height: 400px;"></iframe>
+    <div id="logdiv"> e: </div>
+  </div>
+  <script>
+    var log = function(msg) {
+      var logDiv = document.getElementById('logdiv');
+      logDiv.innerText += ' ' + msg;
+    };
+  </script>
+</body>
+</html>
