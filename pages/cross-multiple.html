@@ -3,31 +3,32 @@
 </head>
 <body>
   <div>
-    <input id="address-text" type="text"/>
-    <button id="sub-button">Go!</button>
-  </div>
-  <div>
-    <iframe id="cross-iframe" style="width: 40%; min-height: 400px;"></iframe>
-    <iframe id="cross-multiple-iframe" style="width: 40%; min-height: 400px;"></iframe>
+    <span>
+      <iframe id="cross-iframe" style="width: 40%; min-height: 400px;"></iframe>
+    </span>
+    <span id="second">
+    </span>
     <div id="logdiv"> e: </div>
   </div>
   <script>
-    window.fURL = 'https://lazyboy.github.io/pages/simple.html';
-    document.getElementById('address-text').value = window.fURL;
-    var i = document.getElementById('cross-iframe');
-    i.src = document.getElementById('address-text').value;
-    var ii = document.getElementById('cross-multiple-iframe');
-    ii.src = 'http://www.ghisler.com';
-    document.getElementById('sub-button').onclick = function(e) {
-      i.src = document.getElementById('address-text').value;
-    };
-    var log = function(msg) {
+    var srcs = [
+      'https://lazyboy.github.io/pages/simple.html',
+      'http://www.ghisler.com'
+    ];
+    var LOG = function(msg) {
+      window.console.log(msg);
       var logDiv = document.getElementById('logdiv');
       logDiv.innerText += ' ' + msg;
     };
-    document.addEventListener('mouseup', function(e) { log('mu'); });
-    document.addEventListener('mousedown', function(e) { log('md'); });
-    document.addEventListener('click', function(e) { log('c'); });
+    var test = function() {
+      var el = document.getElementById('cross-iframe');
+      el.src = srcs[0];
+      window.setTimeout(function() {
+        LOG('Second iframe load');
+        document.getElementById('second').innerHTML =
+            '<iframe src="' + srcs[1] + '" style="width: 40%; min-height: 400px;"></iframe>';
+      }, 500);
+    };
   </script>
 </body>
 </html>
