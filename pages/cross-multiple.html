@@ -4,7 +4,7 @@
 <body>
   <div>
     <span>
-      <iframe id="cross-iframe" style="width: 40%; min-height: 400px;"></iframe>
+      <iframe id="cross-iframe" style="width: 30%; min-height: 400px;"></iframe>
     </span>
     <span id="second"></span>
     <span id="third"></span>
@@ -27,12 +27,12 @@
       window.setTimeout(function() {
         LOG('Second iframe load');
         document.getElementById('second').innerHTML =
-            '<iframe src="' + srcs[1] + '" style="width: 40%; min-height: 400px;"></iframe>';
+            '<iframe src="' + srcs[1] + '" style="width: 30%; min-height: 400px;"></iframe>';
 
         window.setTimeout(function() {
           LOG('Third iframe load');
           document.getElementById('third').innerHTML =
-              '<iframe src="' + srcs[2] + '" style="width: 40%; min-height: 400px;"></iframe>';
+              '<iframe src="' + srcs[2] + '" style="width: 30%; min-height: 400px;"></iframe>';
         }, 2000);
       }, 500);
     };
