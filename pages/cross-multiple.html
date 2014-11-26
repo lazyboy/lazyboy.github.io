@@ -6,14 +6,15 @@
     <span>
       <iframe id="cross-iframe" style="width: 40%; min-height: 400px;"></iframe>
     </span>
-    <span id="second">
-    </span>
+    <span id="second"></span>
+    <span id="third"></span>
     <div id="logdiv"> e: </div>
   </div>
   <script>
     var srcs = [
       'https://lazyboy.github.io/pages/simple.html',
-      'http://www.ghisler.com'
+      'http://www.ghisler.com',
+      'http://www.thispagecannotbedisplayed.com'
     ];
     var LOG = function(msg) {
       window.console.log(msg);
@@ -27,6 +28,12 @@
         LOG('Second iframe load');
         document.getElementById('second').innerHTML =
             '<iframe src="' + srcs[1] + '" style="width: 40%; min-height: 400px;"></iframe>';
+
+        window.setTimeout(function() {
+          LOG('Third iframe load');
+          document.getElementById('third').innerHTML =
+              '<iframe src="' + srcs[2] + '" style="width: 40%; min-height: 400px;"></iframe>';
+        }, 2000);
       }, 500);
     };
 
