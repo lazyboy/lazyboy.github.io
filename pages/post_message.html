@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+  <div>Test page with scrollbars and text box</div>
+  <div><input type="text"/></div>
+  <div id="current-tick"></div>
+  <div id="logdiv"> e: </div>
+  <div style="min-height: 400px; background-color: gray">Test div</div>
+  <script>
+    var LOG = function(msg) {
+      var logDiv = document.getElementById('logdiv');
+      logDiv.innerText += ' ' + msg;
+    };
+    document.addEventListener('mouseup', function(e) { LOG('mu'); });
+    document.addEventListener('mousedown', function(e) { LOG('md'); });
+    document.addEventListener('click', function(e) { LOG('c'); });
+    LOG('parent: ' + window.parent);
+    LOG('top: ' + window.top);
+    var cur = 0;
+    window.setInterval(function() {
+      ++cur;
+      document.getElementById('current-tick').innerText = cur;
+    }, 1000);
+    window.addEventListener('message', function(e) {
+      LOG('message received: ' + e.data);
+      e.source.postMesage('pong', '*');
+    });
+  </script>
+</body>
+</html>
