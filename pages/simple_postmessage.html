@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+  <div>Test page with postmessage handler</div>
+  <div><input type="text"/></div>
+  <div id="current-tick"></div>
+  <div id="logdiv"> e: </div>
+  <div style="min-height: 400px; background-color: gray">Test div</div>
+  <script>
+    var LOG = function(msg) {
+      var logDiv = document.getElementById('logdiv');
+      logDiv.innerText += ' ' + msg;
+    };
+    LOG('window.parent: ' + window.parent);
+    LOG('window.top: ' + window.top);
+    var cur = 0;
+    window.setInterval(function() {
+      ++cur;
+      document.getElementById('current-tick').innerText = cur;
+    }, 1000);
+    window.addEventListener('message', function(e) {
+      LOG('message: ' + e.data + '\n');
+      var source = e.source;
+      LOG('source: ' + source + '\n');
+      window.setTimeout(function() {
+        if (source) {
+          LOG('sending back postMessage');
+          source.postMessage('pong', '*');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
