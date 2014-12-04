@@ -7,7 +7,8 @@
   <div id="logdiv"> e: </div>
   <iframe width="40%" height="400" src="https://lazyboy.github.io/pages/simple.html"></iframe>
   <iframe id="other" width="40%" height="400" src=""></iframe>
-  <button id="navigate-second">Navigate second frame</button>
+  <button id="navigate-second">Navigate second frame (same as A)</button>
+  <button id="navigate-second-other">Navigate second frame (different)</button>
   <script>
     var log = function(msg) {
       var logDiv = document.getElementById('logdiv');
@@ -17,6 +18,9 @@
     var test = function() {
       $('navigate-second').onclick = function(e) {
         $('other').src = 'https://lazyboy.github.io/pages/simple.html';
+      }
+      $('navigate-second-other').onclick = function(e) {
+        $('other').src = 'http://www.ghisler.com';
       }
     };
     test();
