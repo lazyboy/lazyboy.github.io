@@ -13,7 +13,7 @@
       var logDiv = document.getElementById('logdiv');
       logDiv.innerText += ' ' + msg;
     };
-    var $ = function(id); { return document.getElementById(id); };
+    var $ = function(id) { return document.getElementById(id); };
     var test = function() {
       $('navigate-second').onclick = function(e) {
         $('other').src = 'https://lazyboy.github.io/pages/simple.html';
