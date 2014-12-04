@@ -1,2 +1,13 @@
 This change was in remote.
 Five
+
+
+#include <cstdio>
+using namespace std;
+#define rep(i, n) for (i = 0; i < (n); ++i)
+
+int main() {
+  int i, j, k;
+  rep(i, 10) printf("Hello world\n");
+  return 0;
+}
