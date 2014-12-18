@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+  <div>Test page with two iframes navigating to same oop origin</div>
+  <div id="logdiv"> e: </div>
+  <iframe id="first" width="40%" height="400" src="https://lazyboy.github.io/pages/simple.html"></iframe>
+  <iframe id="other" width="40%" height="400" src="http://www.ghisler.com"></iframe>
+  <button id="navigate-first">Navigate first frame</button>
+  <button id="navigate-second">Navigate second frame (same as A)</button>
+  <button id="navigate-second-other">Navigate second frame (different)</button>
+  <script>
+    var log = function(msg) {
+      var logDiv = document.getElementById('logdiv');
+      logDiv.innerText += ' ' + msg;
+    };
+    var $ = function(id) { return document.getElementById(id); };
+    var test = function() {
+      $('navigate-first').onclick = function(e) {
+        $('first').src = 'https://lazyboy.github.io/pages/simple.html';
+      }
+      $('navigate-second').onclick = function(e) {
+        $('other').src = 'https://lazyboy.github.io/pages/simple.html';
+      }
+      $('navigate-second-other').onclick = function(e) {
+        $('other').src = 'http://www.ghisler.com';
+      }
+    };
+    test();
+  </script>
+</body>
+</html>
