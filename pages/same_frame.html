@@ -10,6 +10,8 @@
   <button id="navigate-first">Navigate first frame</button>
   <button id="navigate-second">Navigate second frame (same as A)</button>
   <button id="navigate-second-other">Navigate second frame (different)</button>
+  <button id="add-third-frame">Add a third frame</button>
+  <button id="navigate-third-frame">Add a third frame</button>
   <script>
     var log = function(msg) {
       var logDiv = document.getElementById('logdiv');
@@ -19,13 +21,29 @@
     var test = function() {
       $('navigate-first').onclick = function(e) {
         $('first').src = 'https://lazyboy.github.io/pages/simple.html';
-      }
+      };
       $('navigate-second').onclick = function(e) {
         $('other').src = 'https://lazyboy.github.io/pages/simple.html';
-      }
+      };
       $('navigate-second-other').onclick = function(e) {
         $('other').src = 'http://www.ghisler.com';
-      }
+      };
+      var thirdFrameCreated = false;
+      $('add-third-frame').onclick = function(e) {
+        if (thirdFrameCreated) {
+          return;
+        }
+        var thirdFrame = document.createElement('iframe');
+        thirdFrame.id = "third";
+        document.body.appendChild(thirdFrame);
+        thirdFrameCreated = true;
+      };
+      $('navigate-second-other').onclick = function(e) {
+        if (!thirdFrameCreated) {
+          return;
+        }
+        $('third').src = 'http://www.thispagecannotbedisplayed.com';
+      };
     };
     test();
   </script>
