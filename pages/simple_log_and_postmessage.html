@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-  <div>Test page with post message handler</div>
+  <div>Test page with post message handler [2]</div>
   <div><input type="text"/></div>
   <div id="current-tick"></div>
   <div id="logdiv"> e: </div>
@@ -20,7 +20,7 @@
     //log('top: ' + window.top);
     var cur = 0;
     window.addEventListener('message', function(e) {
-      log(', receive postMessage: ' + JSON.parse(e.message));
+      log(', receive postMessage: ' + JSON.parse(e.data));
     });
     window.setInterval(function() {
       ++cur;
