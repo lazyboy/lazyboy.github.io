@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bug 259431 (media query) - loads this page in webview</title>
+  <style type="text/css">
+    body {
+      background-color: #ccc;
+    }
+
+    #example {
+      background-color: blue;
+    }
+
+    @media screen and (min-width: 800px) {
+    #example {
+      background-color: red;
+    }
+    }
+  </style>
+</head>
+<body>
+  <div id="example">                                                     
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac ante
+    sit amet tortor tincidunt pharetra. Sed non fermentum tortor. Aenean nec
+    nisi eget leo rhoncus hendrerit eu eget tortor. Sed ultrices risus urna, a
+    faucibus eros vulputate vel. Proin ullamcorper condimentum dui. Nam enim
+    diam, ultrices mollis sapien a, dictum elementum velit. Vestibulum ac metus
+    enim. Aliquam sodales at nunc a sollicitudin. Etiam vitae risus imperdiet,
+    suscipit erat nec, laoreet ligula. Aliquam posuere, est vitae fermentum
+    elementum, ipsum mi sollicitudin est, nec lobortis lectus felis ut   
+    nisl. Donec placerat justo magna, nec posuere felis mattis nec. Suspendisse
+    mauris odio, fringilla semper risus id, tincidunt dignissim ipsum. Ut
+    accumsan, ipsum id ultricies rhoncus, nunc mauris convallis nunc, non
+    malesuada elit nulla vel elit. Maecenas nec sem cursus, sollicitudin neque
+    quis, iaculis lectus.
+  </div>                        
+</body>
+</html>
