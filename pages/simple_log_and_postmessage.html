@@ -21,6 +21,7 @@
     var cur = 0;
     window.addEventListener('message', function(e) {
       log(', receive postMessage: ' + JSON.parse(e.data));
+      e.source.postMessage('Hello back', '*');
     });
     window.setInterval(function() {
       ++cur;
