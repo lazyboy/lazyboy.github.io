@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+  <div>
+    <input id="address-text" type="text"/>
+    <button id="sub-button">Go!</button>
+    <button id="resize-button">Resize</button"
+  </div>
+  <div>
+    <iframe id="cross-iframe" style="width: 90%; min-height: 400px;"></iframe>
+    <div id="logdiv"> e: </div>
+  </div>
+  <script>
+    window.fURL = 'https://lazyboy.github.io/pages/simple.html';
+    document.getElementById('address-text').value = window.fURL;
+    var i = document.getElementById('cross-iframe');
+    i.src = document.getElementById('address-text').value;
+    document.getElementById('sub-button').onclick = function(e) {
+      i.src = document.getElementById('address-text').value;
+    };
+    var currentSize = 200;
+    document.getElementById('resize-button').onclick = function() {
+      var newWidth = currentSize + 10;
+      var i = document.getElementById('cross-iframe');
+      i.style.width = newWidth + 'px';
+      currentSize = newWidth;
+    };
+
+    var log = function(msg) {
+      var logDiv = document.getElementById('logdiv');
+      logDiv.innerText += ' ' + msg;
+    };
+    document.addEventListener('mouseup', function(e) { log('mu'); });
+    document.addEventListener('mousedown', function(e) { log('md'); });
+    document.addEventListener('click', function(e) { log('c'); });
+  </script>
+</body>
+</html>
