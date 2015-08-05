@@ -6,6 +6,8 @@
     <input id="address-text" type="text"/>
     <button id="sub-button">Go!</button>
     <button id="resize-button">Resize</button>
+    <button id="show-button">Show</button>
+    <button id="hide-button">Hide</button>
   </div>
   <div>
     <iframe id="cross-iframe" style="width: 90%; min-height: 400px;"></iframe>
@@ -26,6 +28,8 @@
       i.style.width = newWidth + 'px';
       currentSize = newWidth;
     };
+    document.getElementById('show-button').onclick = function() { i.style.display = ''; };
+    document.getElementById('hide-button').onclick = function() { i.style.display = 'none'; };
 
     var log = function(msg) {
       var logDiv = document.getElementById('logdiv');
