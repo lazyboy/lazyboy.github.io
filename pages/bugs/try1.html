@@ -1,0 +1,13 @@
+<html>
+<body>
+  <iframe src="http://www.ghisler.com"></iframe>
+  <script>
+    var iframe = document.querySelector('iframe');
+    var step = 0;
+    window.setInterval(function() {
+      iframe.src = step % 2 == 0 ? 'http://www.ghisler.com' : 'simple.html';
+      ++step;
+    }, 500);
+  </script>
+</body>
+</html>
