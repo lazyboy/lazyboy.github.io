@@ -1,0 +1,99 @@
+<html>
+<body>
+  <script>
+var CONTENT = 'Foobar';
+
+var requestFS = function() {
+  return new Promise(function(resolve, reject) {
+  window.webkitStorageInfo.requestQuota(
+      PERSISTENT, 5*1024*1024, function(grantedBytes) {
+        window.console.log('grantedBytes: ' + grantedBytes);
+        try {
+          window.webkitRequestFileSystem(
+              window.PERSISTENT, grantedBytes,
+              function onSuccess(fileSystem) {
+                resolve(fileSystem);
+              }, function onFailure(e) {
+                window.console.log('webkitFS onFailure');
+                reject(null);
+              });
+        } catch (e) {
+          window.console.log('webkitFS error');
+          reject(null);
+        }
+      });
+  });
+};
+
+var writeThenRead = function(path, data, callback) {
+  writeInternal_(path, data).then(function() {
+    callback(true);
+  }).catch(function(message) {
+    window.console.log('write failed: ' + message);
+    callback(false, message);
+  });
+};
+
+var writeInternal_ = function(path, data) {
+  var self = this;
+  return new Promise(function(resolve, reject) {
+    requestFS().then(function(fileSystem) {
+      fileSystem.root.getFile(
+          path, {create: true, exclusive: true},
+          function onSuccess(fileEntry) {
+            fileEntry.createWriter(function(fileWriter) {
+              fileWriter.onwriteend = function(e) {
+                resolve();
+
+                window.console.log('name: ' + fileEntry.name);
+                window.console.log('fullpath: ' + fileEntry.fullpath);
+                window.console.log('toURL: ' + fileEntry.toURL());
+                // Check?
+                window.console.log('??? Read');
+                //fileSystem.root.getFile(path, {}, function(fe) {
+                //  fe.file(function(file1) {
+                fileEntry.file(function(file1) {
+                    var fr = new FileReader();
+                    fr.onloadend = function(evt) {
+                      if (evt.target.readyState == FileReader.DONE) {
+                        window.console.log('FileReader.DONE');
+                      } else {
+                        return;
+                      }
+                      window.console.log('??? Read, loadeend: ' + this.result);
+                      window.console.log('??? Read, loadeend: ' + evt.target.result);
+                      window.console.log(file1.size);
+                    };
+                    fr.onerror = function() {
+                      window.console.log('??? Read. read failure.');
+                    };
+                    fr.readAsText(file1);
+                  });
+                //}, function(x) {
+                //  window.console.log('??? Read. getFile failure.');
+                //});
+              };
+
+              fileWriter.onerror = function(e) {
+                reject('Write failure.');
+              };
+              window.console.log('data: ' + data);
+              var blob = new Blob([data], {type: 'text/plain'});
+              //fileWriter.write(data);
+              fileWriter.write(blob);
+            }, function onFileWriterFailure() {
+              reject('FileWriter creation failure');
+            });
+          }, function onFailure() {
+            reject('FileSystem.getFile failure.');
+          });
+    }).catch(function(message) {
+      window.console.log('write error: ' + message);
+    });
+  });
+};
+
+writeThenRead();
+  </script>
+</body>
+</html>
