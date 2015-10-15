@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<body>
+  <div>Top</div>
+  <div id="content"></div>
+  <button id="unload-btn">Unload local</button>
+  <iframe src="b.html" id="i1" width="800" height="400"></iframe>
+  <iframe src="http://www.ghisler.com" id="i2" width="1200" height="300"></iframe>
+  <script>
+    document.getElementById('unload-btn').onclick = function() {
+      document.getElementById('i1').src = 'about:blank';
+    };
+  </script>
+</body>

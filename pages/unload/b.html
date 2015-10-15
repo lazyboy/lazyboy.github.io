@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<body>
+  <div>Mid 1</div>
+  <iframe src="http://www.ghisler.com" id="i3" width="200" height="300"></iframe>
+  <script>
+    window.onunload = function() {
+      var i3 = document.getElementById('i3');
+      for (var i = 0; i < 10; ++i) {
+        i3.width = 201 + i;
+      }
+      //i3.src = 'http://127.0.0.1/'; // Crashes renderer
+      i3.src = 'http://www.ghisler.com/whatsnew.htm';
+      var d = window.top.document.getElementById('content');
+      for (var i = 0; i < 10; ++i) {
+        d.innerText += 'during unload.\n';
+      }
+      var i2 = window.top.document.getElementById('i2');
+      i2.parentNode.removeChild(i2);
+      window.top.close();
+    };
+  </script>
+</body>
+
