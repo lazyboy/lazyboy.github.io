@@ -57,6 +57,6 @@ var testButton = $('test');
 testButton.onclick = function() {
   count = 0;
   callbackCount = 0;
-  TOTAL = 200;
+  TOTAL = 1000;
   repeater(loadImageFunc, 10);
 };
