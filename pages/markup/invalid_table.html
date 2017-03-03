@@ -2,11 +2,36 @@
 <!-- Check using https://validator.w3.org/ -->
 <html>
 <head>
-<title>Title</title>
+<title>Invalid table example.</title>
 </head>
 <body>
-<table>
-  <div>INVALID</div>
+<table border="1">
+  <!-- This row is invalid as table #1 doesn't have <tr> -->
+  <tr><td>
+    <!-- This is the culprit table #1 -->
+    <table>
+      <thead><th colspan="3">Functions (1st row)</th></thead>
+      <tbody>
+      <!-- This is the missing piece -->
+      <!-- <tr><td> -->
+        <div>Inside table body.</div>
+        <!-- Presence of this table is crucial to really mess up the topmost level table -->
+        <table><tr><td>hello</td></tr></table>
+      <!-- </td></tr> -->
+      </tbody>
+    </table>
+  </td></tr>
+  <tr><td>
+    <table>
+      <thead><th colspan="3">Functions (2nd row)</th></thead>
+      <tr><td>
+        <div>Inside table body.</div>
+      </td></tr>
+    </table>
+  </td></tr>
+  <tr><td>
+    Third row.
+  </td></tr>
 </table>
 </body>
 </html>

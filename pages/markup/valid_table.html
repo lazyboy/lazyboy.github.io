@@ -5,8 +5,29 @@
 <title>Title</title>
 </head>
 <body>
-<table>
-  <div>INVALID</div>
+<table border="1">
+  <tr><td>
+    <table>
+      <thead><th colspan="3">Functions (1st row)</th></thead>
+      <tbody>
+      <tr><td>
+        <div>Inside table body.</div>
+        <table><tr><td>hello</td></tr></table>
+      </td></tr>
+      </tbody>
+    </table>
+  </td></tr>
+  <tr><td>
+    <table>
+      <thead><th colspan="3">Functions (2nd row)</th></thead>
+      <tr><td>
+        <div>Inside table body.</div>
+      </td></tr>
+    </table>
+  </td></tr>
+  <tr><td>
+    Third row.
+  </td></tr>
 </table>
 </body>
 </html>
